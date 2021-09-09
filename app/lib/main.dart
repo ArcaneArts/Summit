@@ -1,7 +1,5 @@
-import 'package:app/data/sleep_event.dart';
 import 'package:app/screen/home.dart';
 import 'package:app/util/data.dart';
-import 'package:app/util/l.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,12 +17,6 @@ class SummitApplication extends StatefulWidget {
 class _SummitApplicationState extends State<SummitApplication> {
   @override
   Widget build(BuildContext context) {
-    L.i(SleepEvent.from(DateTime.now(), DateTime.now().add(Duration(hours: 6)))
-        .write());
-    L.i(SleepEvent.read(SleepEvent.from(
-                DateTime.now(), DateTime.now().add(Duration(hours: 6)))
-            .write())
-        .write());
     return MaterialApp(
       theme: ThemeData.light(),
       themeMode: Data.getThemeMode(),
