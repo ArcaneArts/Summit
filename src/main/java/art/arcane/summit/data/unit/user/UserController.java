@@ -1,5 +1,6 @@
 package art.arcane.summit.data.unit.user;
 
+import art.arcane.summit.data.object.OK;
 import art.arcane.summit.security.LudicrousPasswordEncoder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,11 @@ public class UserController {
     @GetMapping("whoami")
     public ResponseEntity<?> whoami() {
         return ResponseEntity.ok(userService.context());
+    }
+
+    @GetMapping("logout")
+    public ResponseEntity<?> logout() {
+        userService.contextLogOut();
+        return ResponseEntity.ok(new OK());
     }
 }

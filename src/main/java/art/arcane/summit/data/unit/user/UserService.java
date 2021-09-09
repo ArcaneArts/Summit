@@ -21,6 +21,12 @@ public class UserService implements UserDetailsService {
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
 
+    public void contextLogOut()
+    {
+        SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
+        SecurityContextHolder.clearContext();
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = repository.findByEmail(email.toLowerCase());
