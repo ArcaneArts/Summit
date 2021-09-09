@@ -1,0 +1,18 @@
+name: app
+description: Do more stuff
+publish_to: 'none'
+version: 1.0.1+1
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  get: ^4.3.8
+  sqflite: ^2.0.0+4
+  hive: ^2.0.4
+  hive_flutter: ^1.1.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+flutter:
+  uses-material-design: true
