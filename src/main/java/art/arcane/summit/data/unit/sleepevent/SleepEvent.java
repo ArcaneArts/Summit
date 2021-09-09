@@ -1,6 +1,6 @@
-package art.arcane.summit.data.unit.user;
+package art.arcane.summit.data.unit.sleepevent;
 
-import art.arcane.summit.data.unit.sleepevent.SleepEvent;
+import art.arcane.summit.data.unit.user.User;
 import art.arcane.summit.security.LudicrousPasswordEncoder;
 import art.arcane.summit.security.SummitAuthority;
 import lombok.Getter;
@@ -18,25 +18,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.io.Serial;
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.UUID;
 
-@Table(name = "user")
+import static javax.persistence.TemporalType.*;
+
+@Table(name = "sleep_event")
 @Entity
 @Getter
 @Setter
 @Accessors(fluent = true, chain = true)
 @RequiredArgsConstructor
 @ToString
-public class User implements Serializable {
+public class SleepEvent implements Serializable {
     @Serial
     private static final long serialVersionUID = 337830420440330693L;
 
@@ -47,25 +51,16 @@ public class User implements Serializable {
             updatable = false, nullable = false)
     private UUID id;
 
-    @ElementCollection(targetClass = SummitAuthority.Type.class)
-    @CollectionTable
-    @Column(name = "authority")
-    private Collection<SummitAuthority.Type> authority = new HashSet<>();
+    @Temporal(DATE)
+    @Column(name = "start", nullable = false)
+    private Date start;
 
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
+    @Temporal(DATE)
+    @Column(name = "finish", nullable = false)
+    private Date finish;
 
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
-
-    @Column(name = "email", nullable = false, unique = true)
-    private String email;
-
-    @Column(name = "password", nullable = false, length = LudicrousPasswordEncoder.LENGTH)
-    private String password;
-
-    @OrderBy("start DESC")
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE, CascadeType.MERGE}, orphanRemoval = true)
-    private List<SleepEvent> sleepEvents;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user", nullable = false)
+    private User user;
 
 }
