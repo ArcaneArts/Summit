@@ -18,12 +18,12 @@ import java.util.stream.Collectors;
 @Service
 @Log4j2
 public class UserService implements UserDetailsService {
-    private final art.arcane.summit.data.unit.user.UserRepository repository;
+    private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        art.arcane.summit.data.unit.user.User user = repository.findByEmail(email.toLowerCase());
+        User user = repository.findByEmail(email.toLowerCase());
 
         if (user == null) {
             log.error("Cannot find user by email: " + email.toLowerCase());
@@ -36,11 +36,11 @@ public class UserService implements UserDetailsService {
                 user.authority().stream().map(SummitAuthority.Type::grant).collect(Collectors.toList()));
     }
 
-    public art.arcane.summit.data.unit.user.User getUser(UUID id) {
+    public User getUser(UUID id) {
         return repository.getById(id);
     }
 
-    public art.arcane.summit.data.unit.user.User saveUser(art.arcane.summit.data.unit.user.User user) {
+    public User saveUser(User user) {
         if (!repository.existsById(user.id())) {
             throw new RuntimeException("User does not exist. Use createUser() instead.");
         }
@@ -58,8 +58,8 @@ public class UserService implements UserDetailsService {
         return repository.findByEmail(email.toLowerCase()) != null;
     }
 
-    public art.arcane.summit.data.unit.user.User createUser(String firstName, String lastName, String email, String password) {
-        return repository.save(new art.arcane.summit.data.unit.user.User()
+    public User createUser(String firstName, String lastName, String email, String password) {
+        return repository.save(new User()
                 .firstName(firstName)
                 .lastName(lastName)
                 .password(passwordEncoder.encode(password))

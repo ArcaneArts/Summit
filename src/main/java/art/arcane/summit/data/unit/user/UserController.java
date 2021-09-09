@@ -30,7 +30,7 @@ public class UserController {
             return new ResponseEntity<>(new Error("Email Address already in use."), HttpStatus.CONFLICT);
         }
 
-        art.arcane.summit.data.unit.user.User user = userService.createUser(firstName, lastName, email, password);
+        User user = userService.createUser(firstName, lastName, email, password);
 
         if (user == null) {
             return new ResponseEntity<>(new Error("Failed to create user."), HttpStatus.CONFLICT);

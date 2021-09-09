@@ -44,7 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .hasAnyAuthority(ADMIN.name());
         http.authorizeRequests().antMatchers("api/v1/devops/**")
                 .hasAnyAuthority(ADMIN.name(), DEVOPS.name());
-        http.addFilter(new art.arcane.summit.security.MasterAuthenticationFilter(authenticationManagerBean()));
+        http.addFilter(new MasterAuthenticationFilter(authenticationManagerBean()));
     }
 
     @Bean

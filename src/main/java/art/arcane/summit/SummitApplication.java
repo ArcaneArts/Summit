@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@EntityScan(basePackages = "art.arcane.labyrinth.data.unit")
+@EntityScan(basePackages = "art.arcane.summit.data.unit")
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class SummitApplication {
     public static void main(String[] args) {
