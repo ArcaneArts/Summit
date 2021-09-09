@@ -1,0 +1,13 @@
+server:
+  error:
+    include-stacktrace: always
+spring:
+  datasource:
+    driverClassName: org.mariadb.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/summit
+    username: summit
+    password: thecakeisalie
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
