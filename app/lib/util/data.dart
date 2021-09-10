@@ -12,13 +12,18 @@ class Data {
     await Future.wait(<Future>[
       Hive.openBox("settings", path: "settings"),
       Hive.openBox("state", path: "state"),
-      Hive.openBox("cache", path: "cache")
+      Hive.openBox("cache", path: "cache"),
+      Hive.openBox("jwt", path: "jwt")
     ]);
     L.i("Boxes are open");
     return true;
   }
 
   static Box settings() {
+    return Hive.box("settings");
+  }
+
+  static Box jwt() {
     return Hive.box("settings");
   }
 
