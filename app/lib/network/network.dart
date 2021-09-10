@@ -1,6 +1,7 @@
 import 'package:app/util/data.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:http/http.dart' as http;
 
 class Network {
   static const FlutterSecureStorage? _SECURE =
@@ -16,4 +17,10 @@ class Network {
       kIsWeb ? Data.jwt().delete(key) : _SECURE!.delete(key: key);
   static Future<String?> read(String key) async =>
       kIsWeb ? Data.jwt().get(key) : _SECURE!.read(key: key);
+
+  static Future<String?> login(String username, String password) async {
+    http.Response res = await http.post(Uri.parse("$_URL/login"),
+        body: {"username": username, "password": password});
+    return res.statusCode == 200 ? res.body : null;
+  }
 }
