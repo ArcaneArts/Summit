@@ -39,7 +39,9 @@ public class UserService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 user.email(),
                 user.password(),
-                user.authority().stream().map(SummitAuthority.Type::grant).collect(Collectors.toList()));
+                user.authority().stream()
+                        .map((i)->SummitAuthority.Type.valueOf(i.getName()))
+                        .map(SummitAuthority.Type::grant).collect(Collectors.toList()));
     }
 
     public User getUser(UUID id) {
