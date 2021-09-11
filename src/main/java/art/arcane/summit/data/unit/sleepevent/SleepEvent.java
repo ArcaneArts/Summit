@@ -51,11 +51,9 @@ public class SleepEvent implements Serializable {
             updatable = false, nullable = false)
     private UUID id;
 
-    @Temporal(DATE)
     @Column(name = "start", nullable = false)
     private Date start;
 
-    @Temporal(DATE)
     @Column(name = "finish", nullable = false)
     private Date finish;
 
