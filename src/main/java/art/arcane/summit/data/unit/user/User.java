@@ -15,11 +15,12 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import java.io.Serial;
@@ -35,7 +36,6 @@ import java.util.UUID;
 @Setter
 @Accessors(fluent = true, chain = true)
 @RequiredArgsConstructor
-@ToString
 public class User implements Serializable {
     @Serial
     private static final long serialVersionUID = 337830420440330693L;
@@ -47,10 +47,8 @@ public class User implements Serializable {
             updatable = false, nullable = false)
     private UUID id;
 
-    @ElementCollection(targetClass = SummitAuthority.Type.class)
-    @CollectionTable
-    @Column(name = "authority")
-    private Collection<SummitAuthority.Type> authority = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> authority = new HashSet<>();
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
