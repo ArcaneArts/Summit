@@ -1,4 +1,4 @@
-import 'package:app/screen/home.dart';
+import 'package:app/screen/login.dart';
 import 'package:app/util/data.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +21,7 @@ class _SummitApplicationState extends State<SummitApplication> {
       theme: ThemeData.light(),
       themeMode: Data.getThemeMode(),
       darkTheme: ThemeData.dark(),
-      home: HomeScreen(),
+      home: Login(),
     );
   }
 }

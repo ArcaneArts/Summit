@@ -18,6 +18,20 @@ class Network {
   static Future<String?> read(String key) async =>
       kIsWeb ? Data.jwt().get(key) : _SECURE!.read(key: key);
 
+  static Future<String?> register(
+      {required String firstName,
+      required String lastName,
+      required String username,
+      required String password}) async {
+    http.Response res = await http.post(Uri.parse("$_URL/login"), body: {
+      "username": username,
+      "password": password,
+      "firstName": firstName,
+      "lastName": lastName
+    });
+    return res.statusCode == 200 ? res.body : null;
+  }
+
   static Future<String?> login(String username, String password) async {
     http.Response res = await http.post(Uri.parse("$_URL/login"),
         body: {"username": username, "password": password});
