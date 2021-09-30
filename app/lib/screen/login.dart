@@ -1,5 +1,7 @@
+import 'package:app/screen/register.dart';
 import 'package:app/summit_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class Login extends StatefulWidget {
@@ -19,6 +21,13 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  late bool alreadyLoggedIn;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -70,7 +79,14 @@ class _LoginState extends State<Login> {
             ),
             Spacer(
               flex: 5,
-            )
+            ),
+            TextButton(
+              child: Text("Create Account"),
+              onPressed: () => Get.to(Register()),
+            ),
+            Spacer(
+              flex: 1,
+            ),
           ],
         ),
       ),

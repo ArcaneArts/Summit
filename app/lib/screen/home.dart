@@ -1,4 +1,7 @@
+import 'package:app/network/network.dart';
+import 'package:app/util/data.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

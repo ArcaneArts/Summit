@@ -1,6 +1,9 @@
+import 'package:app/screen/home.dart';
 import 'package:app/screen/login.dart';
+import 'package:app/screen/register.dart';
 import 'package:app/util/data.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,11 +20,16 @@ class SummitApplication extends StatefulWidget {
 class _SummitApplicationState extends State<SummitApplication> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: ThemeData.light(),
       themeMode: Data.getThemeMode(),
       darkTheme: ThemeData.dark(),
-      home: Login(),
+      initialRoute: "/login",
+      getPages: [
+        GetPage(name: "/", page: () => HomeScreen()),
+        GetPage(name: "/login", page: () => Login()),
+        GetPage(name: "/register", page: () => Register()),
+      ]
     );
   }
 }

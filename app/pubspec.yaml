@@ -15,6 +15,7 @@ dependencies:
   jwt_decoder: ^2.0.1
   http: ^0.13.3
   reactive_forms: ^10.6.0
+  flutter_bloc: ^7.3.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -46,6 +46,11 @@ public class UserController {
         return ResponseEntity.ok(userService.context());
     }
 
+    @GetMapping("ping")
+    public ResponseEntity<?> ping() {
+        return ResponseEntity.ok("pong");
+    }
+
     @GetMapping("logout")
     public ResponseEntity<?> logout() {
         userService.contextLogOut();

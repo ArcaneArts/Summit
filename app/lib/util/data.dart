@@ -24,7 +24,7 @@ class Data {
   }
 
   static Box jwt() {
-    return Hive.box("settings");
+    return Hive.box("jwt");
   }
 
   static Box state() {
