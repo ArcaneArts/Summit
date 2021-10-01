@@ -16,7 +16,11 @@ dependencies:
   http: ^0.13.3
   reactive_forms: ^10.6.0
   flutter_bloc: ^7.3.0
+  injectable: ^1.5.0
+  get_it: ^7.2.0
 dev_dependencies:
+  injectable_generator: ^1.5.2
+  build_runner: ^2.1.2
   flutter_test:
     sdk: flutter
 flutter:
