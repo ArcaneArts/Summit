@@ -1,5 +1,5 @@
 import 'package:app/data/provider/secure_storage_provider.dart';
-import 'package:app/data/provider/user_provider.dart';
+import 'package:app/data/user/user_provider.dart';
 import 'package:injectable/injectable.dart';
 
 class UserRepository

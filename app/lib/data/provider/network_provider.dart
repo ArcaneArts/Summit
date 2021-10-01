@@ -1,3 +1,4 @@
+import 'package:app/util/l.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -6,8 +7,9 @@ class NetworkProvider
   final bool secure;
   final int port;
   final String address;
+  final String name;
 
-  NetworkProvider({this.secure = true, this.port = 8080, required this.address});
+  NetworkProvider({required this.name, this.secure = true, this.port = 8080, required this.address});
 
   Uri url({String extension = ""})
   => Uri.parse("http${secure ? 's' : ''}://$address:$port$extension");
@@ -18,6 +20,37 @@ class NetworkProvider
   Future<http.Response> get({String at = "", Map<String, String>? headers}) async
   => http.get(url(extension: at), headers: headers);
 
-  Future<String?> bodyIf200(Future<http.Response> response) async =>
-    response.then((value) => value.statusCode == 200 ? value.body : null);
+  Future<String?> network({required Future<http.Response> response, String requestName = "Unknown Request?", int timeoutMs = 15000})
+  {
+    return response
+        .then((value) {
+      L.e("============== REPO HTTPX ERROR ===============");
+      L.e("Repository: $name (${runtimeType.toString()})");
+      L.e("Request: $requestName");
+      L.e("Request URL: ${value.request!.url.toString()}");
+      L.e("Request Method: ${value.request!.method.toString()}");
+      L.e("Request Headers: ${value.request!.headers}");
+      L.e("Status: $value");
+      L.e("Headers: ${value.headers}");
+      L.e("Reason: ${value.reasonPhrase}");
+      L.e("Body: ${value.body}");
+      L.e("Redirect: ${value.isRedirect}");
+      L.e("----------------------------------------------");
+      return null;
+    }).onError((error, stackTrace) {
+      L.e("================= REPO ERROR =================");
+      L.e("Repository: $name (${runtimeType.toString()})");
+      L.e("Request: $requestName");
+      L.e("Error: $error");
+      L.e("Stack: $stackTrace");
+      L.e("----------------------------------------------");
+      return null;
+    }).timeout(Duration(milliseconds: timeoutMs), onTimeout: () {
+      L.e("================ REPO TIMEOUT ================");
+      L.e("Repository: $name (${runtimeType.toString()})");
+      L.e("Request: $requestName");
+      L.e("----------------------------------------------");
+      return null;
+    });
+  }
 }
