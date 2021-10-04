@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:app/util/l.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -17,8 +19,19 @@ class NetworkProviderUtil
   Future<http.Response> post({String at = "", Object? body}) async
   => http.post(url(extension: at), body: body);
 
-  Future<http.Response> get({String at = "", Map<String, String>? headers}) async
-  => http.get(url(extension: at), headers: headers);
+  Future<http.Response> get({String at = "", Map<String, String>? headers}) async {
+    Uri u = url(extension: at);
+    L.i("Requesting " + u.toString());
+    if(headers == null)
+      {
+        headers = Map<String, String>();
+      }
+
+    headers['Access-Control-Allow-Origin'] = '*';
+    headers['Access-Control-Allow-Headers'] = 'Access-Control-Allow-Origin, Accept';
+    L.i("Headers " + headers.toString());
+    return http.get(u, headers: headers);
+  }
 
   Future<http.Response?> network({required Future<http.Response> response, String requestName = "Unknown Request?", int timeoutMs = 15000})
   {

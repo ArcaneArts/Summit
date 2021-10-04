@@ -1,1 +1,7 @@
 rootProject.name = 'Summit'
+
+sourceControl {
+    gitRepository("https://github.com/ArcaneArts/Amulet.git") {
+        producesModule("art.arcane:Amulet")
+    }
+}

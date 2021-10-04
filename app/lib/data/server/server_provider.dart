@@ -7,7 +7,7 @@ class ServerProvider extends NetworkProviderUtil
   @factoryMethod
   factory ServerProvider.from() => ServerProvider(
     address: 'localhost',
-    secure: true,
+    secure: false,
     port: 8080
   );
 
