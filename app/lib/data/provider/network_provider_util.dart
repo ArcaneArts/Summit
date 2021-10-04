@@ -2,14 +2,14 @@ import 'package:app/util/l.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class NetworkProvider
+class NetworkProviderUtil
 {
   final bool secure;
   final int port;
   final String address;
   final String name;
 
-  NetworkProvider({required this.name, this.secure = true, this.port = 8080, required this.address});
+  NetworkProviderUtil({required this.name, this.secure = true, this.port = 8080, required this.address});
 
   Uri url({String extension = ""})
   => Uri.parse("http${secure ? 's' : ''}://$address:$port$extension");

@@ -209,6 +209,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.3.0"
+  flutter_rx_bloc:
+    dependency: "direct main"
+    description:
+      name: flutter_rx_bloc
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -494,6 +501,34 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "10.6.2"
+  rx_bloc:
+    dependency: "direct main"
+    description:
+      name: rx_bloc
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.0"
+  rx_bloc_generator:
+    dependency: "direct main"
+    description:
+      name: rx_bloc_generator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.1.0"
+  rx_bloc_list:
+    dependency: "direct main"
+    description:
+      name: rx_bloc_list
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.0"
+  rxdart:
+    dependency: "direct main"
+    description:
+      name: rxdart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.27.2"
   shelf:
     dependency: transitive
     description:

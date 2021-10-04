@@ -1,6 +1,6 @@
-import 'package:app/data/provider/network_provider.dart';
+import 'package:app/data/provider/network_provider_util.dart';
 
-class ServerProvider extends NetworkProvider
+class ServerProvider extends NetworkProviderUtil
 {
   ServerProvider({bool secure = true, int port = 8080, required String address})
       : super(name: "Server", address: address, port: port, secure: secure);

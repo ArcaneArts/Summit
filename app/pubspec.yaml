@@ -18,9 +18,14 @@ dependencies:
   flutter_bloc: ^7.3.0
   injectable: ^1.5.0
   get_it: ^7.2.0
+  rx_bloc_generator: ^5.1.0
+  rxdart: ^0.27.2
+  rx_bloc: ^3.2.0
+  rx_bloc_list: ^3.1.0
+  flutter_rx_bloc: ^4.0.0
   json_serializable: ^5.0.2
 dev_dependencies:
-  injectable_generator: ^1.5.2
+  injectable_generator: any
   build_runner: ^2.1.2
   flutter_test:
     sdk: flutter

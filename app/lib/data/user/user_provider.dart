@@ -1,7 +1,7 @@
-import 'package:app/data/provider/network_provider.dart';
+import 'package:app/data/provider/network_provider_util.dart';
 import 'package:injectable/injectable.dart';
 
-class UserProvider extends NetworkProvider
+class UserProvider extends NetworkProviderUtil
 {
   UserProvider({bool secure = true, int port = 8080, required String address})
       : super(name: "User", secure: secure, port: port, address: address);
