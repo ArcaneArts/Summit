@@ -7,17 +7,20 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    body: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        RxResultBuilder<HomeBlocType, bool>(
-            state: (b) => b.states.pong,
-            buildSuccess: (c,d,b) => Text("Pong: $d"),
-            buildError: (c,e, b) => Text("Error: $e"),
-            buildLoading: (c, b) => CircularProgressIndicator()),
-        TextButton(onPressed: () => RxBlocProvider.of<HomeBlocType>(context).events.ping(),
-            child: Text("Ping"))
-      ],
+    body: Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          RxResultBuilder<HomeBlocType, bool>(
+              state: (b) => b.states.pong,
+              buildSuccess: (c,d,b) => Text("Pong: $d"),
+              buildError: (c,e, b) => Text("Error: $e"),
+              buildLoading: (c, b) => CircularProgressIndicator()),
+          TextButton(onPressed: () => RxBlocProvider.of<HomeBlocType>(context).events.ping(),
+              child: Text("Ping"))
+        ],
+      ),
     ),
   );
 }

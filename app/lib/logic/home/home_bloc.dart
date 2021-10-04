@@ -33,8 +33,7 @@ class HomeBloc extends $HomeBloc {
       .throttleTime(const Duration(milliseconds: 200))
       .switchMap((value) async* {
         yield Result<bool>.loading();
-        await Future.delayed(const Duration(seconds: 1));
-        yield Result<bool>.success(true);
+        yield await server.ping();
       })
       .setResultStateHandler(this)
       .shareReplay(maxSize: 1);

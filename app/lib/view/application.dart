@@ -16,9 +16,6 @@ class SummitApplication extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ServerProvider p = gx<ServerProvider>();
-    L.i("Got server provider");
-
     return GetMaterialApp(
         theme: ThemeData.light(),
         themeMode: Data.getThemeMode(),

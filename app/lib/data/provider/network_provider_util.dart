@@ -20,23 +20,32 @@ class NetworkProviderUtil
   Future<http.Response> get({String at = "", Map<String, String>? headers}) async
   => http.get(url(extension: at), headers: headers);
 
-  Future<String?> network({required Future<http.Response> response, String requestName = "Unknown Request?", int timeoutMs = 15000})
+  Future<http.Response?> network({required Future<http.Response> response, String requestName = "Unknown Request?", int timeoutMs = 15000})
   {
     return response
         .then((value) {
-      L.e("============== REPO HTTPX ERROR ===============");
-      L.e("Repository: $name (${runtimeType.toString()})");
-      L.e("Request: $requestName");
-      L.e("Request URL: ${value.request!.url.toString()}");
-      L.e("Request Method: ${value.request!.method.toString()}");
-      L.e("Request Headers: ${value.request!.headers}");
-      L.e("Status: $value");
-      L.e("Headers: ${value.headers}");
-      L.e("Reason: ${value.reasonPhrase}");
-      L.e("Body: ${value.body}");
-      L.e("Redirect: ${value.isRedirect}");
-      L.e("----------------------------------------------");
-      return null;
+      if(value.statusCode != 200)
+        {
+          L.e("============== REPO HTTPX ERROR ===============");
+          L.e("Repository: $name (${runtimeType.toString()})");
+          L.e("Request: $requestName");
+          L.e("Request URL: ${value.request!.url.toString()}");
+          L.e("Request Method: ${value.request!.method.toString()}");
+          L.e("Request Headers: ${value.request!.headers}");
+          L.e("Status: $value");
+          L.e("Headers: ${value.headers}");
+          L.e("Reason: ${value.reasonPhrase}");
+          L.e("Body: ${value.body}");
+          L.e("Redirect: ${value.isRedirect}");
+          L.e("----------------------------------------------");
+          return null;
+        }
+      else
+        {
+          L.i("Request: " + requestName + " Response: " + value.toString());
+        }
+
+      return value;
     }).onError((error, stackTrace) {
       L.e("================= REPO ERROR =================");
       L.e("Repository: $name (${runtimeType.toString()})");

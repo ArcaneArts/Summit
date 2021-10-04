@@ -16,11 +16,11 @@ class UserProvider extends NetworkProviderUtil
        "password": password,
        "firstName": firstName,
        "lastName": lastName
-     }), requestName: "Register");
+     }), requestName: "Register").then((value) => value?.body);
 
   Future<String?> login({required String username, required String password}) async =>
      network(response: post(at: "/api/v1/user/login", body: {
       "username": username,
       "password": password
-    }), requestName: "Login");
+    }), requestName: "Login").then((value) => value?.body);
 }

@@ -1,4 +1,5 @@
 import 'package:app/data/server/server_provider.dart';
+import 'package:rx_bloc/rx_bloc.dart';
 
 class ServerRepository
 {
@@ -6,15 +7,15 @@ class ServerRepository
 
   ServerRepository(this.serverProvider);
 
-  Future<bool> ping() async
+  Future<Result<bool>> ping() async
   {
     return serverProvider.ping().then((value) {
       if(value == null)
         {
-          return false;
+          return Result.error(Exception('null response'));
         }
 
-      return true;
+      return Result.success(true);
     });
   }
 }

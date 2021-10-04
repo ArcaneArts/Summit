@@ -4,7 +4,6 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-import 'package:app/util/l.dart';
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -23,8 +22,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
     {String? environment, _i2.EnvironmentFilter? environmentFilter}) {
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   gh.factory<_i3.SecureStorageProvider>(() => _i3.SecureStorageProvider());
-  gh.factory<_i4.ServerProvider>(() => _i4.ServerProvider(
-      secure: get<bool>(), port: get<int>(), address: get<String>()));
+  gh.factory<_i4.ServerProvider>(() => _i4.ServerProvider.from());
   gh.factory<_i5.ServerRepository>(
       () => _i5.ServerRepository(get<_i4.ServerProvider>()));
   gh.factory<_i6.SummitRepository>(() => _i6.SummitRepository(get<String>()));
@@ -33,6 +31,5 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i8.UserRepository>(() => _i8.UserRepository(
       get<_i7.UserProvider>(), get<_i3.SecureStorageProvider>()));
   gh.factory<_i9.HomeBloc>(() => _i9.HomeBloc(get<_i5.ServerRepository>()));
-
   return get;
 }
