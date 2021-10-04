@@ -5,10 +5,10 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'main.config.dart';
 
-final getIt = GetIt.instance;
+final gx = GetIt.instance;
 
 @InjectableInit()
-void configureDependencies() => $initGetIt(getIt);
+void configureDependencies() => $initGetIt(gx, environment: 'dev');
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
