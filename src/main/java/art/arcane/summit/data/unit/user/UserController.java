@@ -2,7 +2,6 @@ package art.arcane.summit.data.unit.user;
 
 import art.arcane.summit.data.object.OK;
 import art.arcane.summit.security.LudicrousPasswordEncoder;
-import art.arcane.summit.security.SummitAuthority;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

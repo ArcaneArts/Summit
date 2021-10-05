@@ -1,6 +1,5 @@
 package art.arcane.summit.data.unit.user;
 
-import art.arcane.summit.data.unit.sleepevent.SleepEvent;
 import art.arcane.summit.security.LudicrousPasswordEncoder;
 import art.arcane.summit.security.SummitAuthority;
 import lombok.Getter;
@@ -61,9 +60,4 @@ public class User implements Serializable {
 
     @Column(name = "password", nullable = false, length = LudicrousPasswordEncoder.LENGTH)
     private String password;
-
-    @OrderBy("start DESC")
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE, CascadeType.MERGE}, orphanRemoval = true)
-    private List<SleepEvent> sleepEvents;
-
 }

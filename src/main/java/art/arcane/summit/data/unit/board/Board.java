@@ -1,6 +1,5 @@
-package art.arcane.summit.data.unit.sleepevent;
+package art.arcane.summit.data.unit.board;
 
-import art.arcane.summit.data.unit.user.User;
 import art.arcane.summit.security.LudicrousPasswordEncoder;
 import art.arcane.summit.security.SummitAuthority;
 import lombok.Getter;
@@ -15,32 +14,28 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.io.Serial;
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.UUID;
 
-import static javax.persistence.TemporalType.*;
-
-@Table(name = "sleep_event")
+@Table(name = "board")
 @Entity
 @Getter
 @Setter
 @Accessors(fluent = true, chain = true)
 @RequiredArgsConstructor
-@ToString
-public class SleepEvent implements Serializable {
+public class Board implements Serializable {
     @Serial
     private static final long serialVersionUID = 337830420440330693L;
 
@@ -51,14 +46,6 @@ public class SleepEvent implements Serializable {
             updatable = false, nullable = false)
     private UUID id;
 
-    @Column(name = "start", nullable = false)
-    private Date start;
-
-    @Column(name = "finish", nullable = false)
-    private Date finish;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user", nullable = false)
-    private User user;
-
+    @Column(name = "name", nullable = false)
+    private String name;
 }
