@@ -1,5 +1,6 @@
 package art.arcane.summit.data.unit.user;
 
+import art.arcane.summit.data.unit.board.access.BoardAccess;
 import art.arcane.summit.security.LudicrousPasswordEncoder;
 import art.arcane.summit.security.SummitAuthority;
 import lombok.Getter;
@@ -9,19 +10,7 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
@@ -60,4 +49,7 @@ public class User implements Serializable {
 
     @Column(name = "password", nullable = false, length = LudicrousPasswordEncoder.LENGTH)
     private String password;
+
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    private List<BoardAccess> boardAccesses;
 }

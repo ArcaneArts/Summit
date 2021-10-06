@@ -1,12 +1,11 @@
 package art.arcane.summit.data.unit.board;
 
-import art.arcane.summit.data.object.OK;
+import art.arcane.summit.data.unit.board.access.BoardAccess;
+import art.arcane.summit.data.unit.board.access.BoardAccessService;
 import art.arcane.summit.data.unit.user.User;
 import art.arcane.summit.data.unit.user.UserService;
-import art.arcane.summit.security.LudicrousPasswordEncoder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,15 +16,21 @@ import java.util.UUID;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class BoardController {
     private final BoardService boardService;
+    private final BoardAccessService boardAccessService;
+    private final UserService userService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> get(@PathVariable("id") String id) {
+    @GetMapping("/{board}")
+    public ResponseEntity<?> get(@PathVariable("board") String id) {
         return ResponseEntity.ok(boardService.getBoard(UUID.fromString(id)));
     }
 
     @PostMapping("/create")
     public ResponseEntity<?> create() {
-        return ResponseEntity.ok(boardService.createBoard());
+
+        Board b = boardService.createBoard();
+        User u = userService.context();
+        BoardAccess a = boardAccessService.createAdminBoardAccess(u, b);
+        return ResponseEntity.ok(a);
     }
 
     @PutMapping("/update")
@@ -33,8 +38,8 @@ public class BoardController {
         return ResponseEntity.ok(boardService.saveBoard(board));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") String id) {
+    @DeleteMapping("/{board}")
+    public ResponseEntity<?> delete(@PathVariable("board") String id) {
         boardService.delete(UUID.fromString(id));
         return ResponseEntity.ok().build();
     }

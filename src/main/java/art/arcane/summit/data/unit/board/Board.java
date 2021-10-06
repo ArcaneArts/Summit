@@ -1,5 +1,6 @@
 package art.arcane.summit.data.unit.board;
 
+import art.arcane.summit.data.unit.board.access.BoardAccess;
 import art.arcane.summit.security.LudicrousPasswordEncoder;
 import art.arcane.summit.security.SummitAuthority;
 import lombok.Getter;
@@ -48,4 +49,7 @@ public class Board implements Serializable {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "board", orphanRemoval = true)
+    private List<BoardAccess> boardAccesses;
 }
